@@ -1,5 +1,4 @@
-require("./db/conn");
-
+require("../db/conn");
 const express = require("express");
 const path = require("path");
 const http = require("http");
@@ -8,28 +7,36 @@ const { Server } = require("socket.io");
 const server = http.createServer(app);
 const io = new Server(server);
 const port = process.env.PORT || 8000;
-// const axios = require('axios');
-// const cheerio = require('cheerio');
-const chatData = require("./model/schema");
-// const { copyFileSync } = require("fs");
-// const { all } = require("axios");
+const hbs=require("hbs")
+const chatData = require("../model/schema");
 const staticPath = path.join(__dirname, "./public");
+console.log(staticPath);
+const templatePath = path.join(__dirname, "../templates/views");
 
+console.log(staticPath);
+const cors=require("cors");
 const allMessagesContainer = [];
 
-app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+    origin: '*'
+}));
 
-app.set("view engine", "hbs");
+app.set("view engine" , "hbs");
+app.set("views", templatePath);
+app.use(express.static(staticPath))
+app.use(express.urlencoded({ extended: false }))
+
+app.use(express.json())//humesha likha chhaiye
 
 io.on("connection", (socket) => {
   console.log(socket.id);
 
-  socket.on("message", (data) => {
+  socket.on("message", (data,name) => {
     //(data,name) get user name from here
-    io.emit("chat message", data);
+    io.emit("chat message", data,name);
     // save_data()
     allMessagesContainer.push({
-      name: "username",
+      name,
       message: data,
     });
     // console.log(data); //cl current user message
@@ -48,20 +55,22 @@ app.get("/", (req, res) => {
 app.post("/savedata", (req, res) => {
   // console.log(allMessagesContainer);
   try {
-    allMessagesContainer.push({
-      name: "username",
-      message: "msg",
-    });
+    // for verifying restapi
+    // allMessagesContainer.push({
+    //   name: "username",
+    //   message: "msg",
+    // });
+    // above for rest api
     allMessagesContainer.forEach(async (elem) => {
-      console.log(elem);
-      console.log(elem.message);
+      // console.log(elem);
+      // console.log(elem.name);
       const tostoredata = new chatData({
-        usrname: "danish",
+        usrname: elem.name,
         msg: elem.message,
       });
       const saved = await tostoredata.save();
-      console.log(saved);
-      console.log("Saved");
+      // console.log(saved);
+      // console.log("Saved");
     });
     // console.log(allMessagesContainer);
     allMessagesContainer.length=0 //emptys the array 
@@ -69,6 +78,7 @@ app.post("/savedata", (req, res) => {
       // res.status(200).send({ "data saved": allMessagesContainer });
       // res.send({ok:"ok"})
       return res.status(200).send("data saved")
+        // return res.status(200).render("index")        
   } catch (err) {
     // res.send({ err: err });
     return res.status(400).send(err)

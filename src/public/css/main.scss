@@ -1,6 +1,212 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
 
+body {
+    // background-color: pink;
+    background-image: url("../img/13900618_5291450.jpg");
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: quicksand;
+
+    .credentialspage {
+        width: 18rem;
+        height: 12rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background: rgba(194, 240, 230, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        label {
+            width: 100%;
+            font-size: 1.4rem;
+            text-align: center;
+            text-transform: capitalize;
+            color: #05b790;
+        }
+        input[type="text"] {
+            width: 60%;
+            height: 2rem;
+            border: 2px solid #05b790;
+            border-radius: 1rem;
+            color: #05b790;
+            text-transform: capitalize;
+            font-size: 1.4rem;
+            font-weight: 400;
+            padding: 1rem;
+            outline: none;
+        }
+        input[type="button"] {
+            width: 60%;
+            height: 2rem;
+            border: 2px solid #05b790;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+            text-transform: capitalize;
+            font-family: quicksand;
+            outline: none;
+            background-color: transparent;
+            &:hover {
+                background-color: #05b790;
+                text-transform: uppercase;
+            }
+        }
+    }
+    .mainpage {
+        display: none;
+        width: 80%;
+        height: 70%;
+        // border: 2px solid red;
+        overflow: hidden;
+        .container {
+            width: 60%;
+            height: 90%;
+            margin: 1rem;
+            padding: 1rem;
+            // border: 2px solid red;
+            max-height: 100%; /* Set a fixed height */
+            overflow-y: auto;
+            background: rgba(194, 240, 230, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            // ul {
+            //     display: flex;
+            //     flex-direction: column;
+            //     justify-content: flex-end;
+            //     align-items: flex-start;
+            //     width: 100%;
+            //     height: 100%;
+            //     list-style-type: none;
+            //     // overflow-y: auto;
+            div {
+                display: flex;
+                flex-direction: column;
+                margin: 2rem;
+                background-color: #c2f0e6;
+                border-radius: 1rem;
+                padding: 1rem;
+                &:nth-child(even) {
+                    text-align: right;
+                }
+                &:nth-child(odd) {
+                    text-align: right;
+                }
+                p {
+                    color: #05b790;
+                    font-size: 0.8rem;
+                    font-weight: 400;
+                }
+                li {
+                    width: fit-content;
+                    height: fit-content;
+                    margin: 0.4rem;
+                    list-style-type: none;
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                    color: #2C306F;
+                }
+
+                // }
+            }
+        }
+        form {
+            width: 50%;
+            height: 2.4rem;
+            // border: 2px solid red;
+            display: flex;
+            flex-direction: row;
+            // justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            background-color: white;
+            border: 2px solid #a5e4dc;
+            border-radius: 1rem;
+            overflow: hidden;
+            .left {
+                width: 80%;
+            }
+            .right {
+                width: 20%;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            input[type="text"] {
+                align-self: flex-start;
+                width: 100%;
+                height: 100%;
+                font-size: 1.2rem;
+                font-weight: 400;
+                border: none;
+                outline: none;
+                color: black;
+                font-family: quicksand;
+                margin-left: 1rem;
+            }
+            img {
+                align-self: flex-end;
+                height: 2rem;
+                font-size: 1.2rem;
+                border: none;
+                background-color: transparent;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    //style scroll bar ->
+    /* For WebKit browsers (Chrome, Safari) */
+    ::-webkit-scrollbar {
+        width: 5px; /* Width of the scrollbar */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgb(235, 235, 235); /* Background color of the track */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #5ca3bb; /* Color of the scrollbar thumb */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a2def1; /* Color of the scrollbar thumb on hover */
+    }
+
+    /* For Firefox */
+    /* The scrollbar width and track are not customizable in Firefox */
+    ::-webkit-scrollbar {
+        //most imp it allows scrolling without displaying scrollba itsgood
+        display: none;
+    }
+    /* Scrollbar thumb */
+    html {
+        scrollbar-color: #5ca3bb; /* Color of the scrollbar thumb and track respectively */
+        scrollbar-width: thin; /* Width of the scrollbar thumb */
+    }
+
+    /* Scrollbar thumb on hover */
+    html:hover {
+        scrollbar-color: #5ca3bb rgb(227, 227, 227); /* Color of the scrollbar thumb on hover and track respectively */
+    }
+
+    // ends
 }

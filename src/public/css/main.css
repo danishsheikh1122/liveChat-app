@@ -2,4 +2,186 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-image: url("../img/13900618_5291450.jpg");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: quicksand;
+  /* For WebKit browsers (Chrome, Safari) */
+  /* For Firefox */
+  /* The scrollbar width and track are not customizable in Firefox */
+  /* Scrollbar thumb */
+  /* Scrollbar thumb on hover */
+}
+body .credentialspage {
+  width: 18rem;
+  height: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(194, 240, 230, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+body .credentialspage label {
+  width: 100%;
+  font-size: 1.4rem;
+  text-align: center;
+  text-transform: capitalize;
+  color: #05b790;
+}
+body .credentialspage input[type=text] {
+  width: 60%;
+  height: 2rem;
+  border: 2px solid #05b790;
+  border-radius: 1rem;
+  color: #05b790;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 1rem;
+  outline: none;
+}
+body .credentialspage input[type=button] {
+  width: 60%;
+  height: 2rem;
+  border: 2px solid #05b790;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-family: quicksand;
+  outline: none;
+  background-color: transparent;
+}
+body .credentialspage input[type=button]:hover {
+  background-color: #05b790;
+  text-transform: uppercase;
+}
+body .mainpage {
+  display: none;
+  width: 80%;
+  height: 70%;
+  overflow: hidden;
+}
+body .mainpage .container {
+  width: 60%;
+  height: 90%;
+  margin: 1rem;
+  padding: 1rem;
+  max-height: 100%; /* Set a fixed height */
+  overflow-y: auto;
+  background: rgba(194, 240, 230, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+body .mainpage .container div {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  background-color: #c2f0e6;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+body .mainpage .container div:nth-child(even) {
+  text-align: right;
+}
+body .mainpage .container div:nth-child(odd) {
+  text-align: right;
+}
+body .mainpage .container div p {
+  color: #05b790;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+body .mainpage .container div li {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0.4rem;
+  list-style-type: none;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #2C306F;
+}
+body .mainpage form {
+  width: 50%;
+  height: 2.4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  background-color: white;
+  border: 2px solid #a5e4dc;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+body .mainpage form .left {
+  width: 80%;
+}
+body .mainpage form .right {
+  width: 20%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+body .mainpage form input[type=text] {
+  align-self: flex-start;
+  width: 100%;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border: none;
+  outline: none;
+  color: black;
+  font-family: quicksand;
+  margin-left: 1rem;
+}
+body .mainpage form img {
+  align-self: flex-end;
+  height: 2rem;
+  font-size: 1.2rem;
+  border: none;
+  background-color: transparent;
+}
+body .mainpage form img:hover {
+  cursor: pointer;
+}
+body ::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+body ::-webkit-scrollbar-track {
+  background: rgb(235, 235, 235); /* Background color of the track */
+}
+body ::-webkit-scrollbar-thumb {
+  background: #5ca3bb; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Rounded corners */
+}
+body ::-webkit-scrollbar-thumb:hover {
+  background: #a2def1; /* Color of the scrollbar thumb on hover */
+}
+body ::-webkit-scrollbar {
+  display: none;
+}
+body html {
+  scrollbar-color: #5ca3bb; /* Color of the scrollbar thumb and track respectively */
+  scrollbar-width: thin; /* Width of the scrollbar thumb */
+}
+body html:hover {
+  scrollbar-color: #5ca3bb rgb(227, 227, 227); /* Color of the scrollbar thumb on hover and track respectively */
 }/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="data()">
+    <div class="credentialspage" id="credentialspage">
+        <label for="username">enter your username</label>
+        <input type="text" id="username" min="5" max="10" autofocus>
+        <input type="button" value="Join Chat" onclick="credentialspage_btn()" id="bbtn">
+    </div>
+    <div class="mainpage" id="mainpage">
+        <div class="container" name="msgcontainer" id="msgcontainer">
+        </div>
+        <form action="/savedata" method="post" id="myForm">
+            <div class="left">
+                <input type="text" id="msg" autofocus>
+            </div>
+            <div class="right">
+                <img id="send_btn" src="/img/send.png" alt="">
+                <img id="submitButton" src="/img/save.png" alt="">
+            </div>
+        </form>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
+<script>
+
+    //data retriving form data base
+    const data = async () => {
+        try {
+            const response = await fetch("http://localhost:8000/api/savedata")
+            //console.log(response) this will give us status code and all other things but
+            //it is not in object form to convert it use below code
+            const jsonData = await response.json()//imp convert response received froom local host to data
+            if (jsonData.length == 0) {
+                console.log("no data to fetch")
+            } else {
+
+                console.log(jsonData)
+                //putting data to frontend
+                jsonData.forEach((elem) => {
+                    const div = document.createElement('div');
+
+                    const p = document.createElement('p');
+                    const li = document.createElement('li');
+                    p.textContent = elem.usrname
+                    li.textContent = elem.msg
+                    div.append(p)
+                    div.append(li)
+                    container.appendChild(div)
+                })
+            }
+        } catch (err) {
+            console.log(err)
+
+        }
+    }
+    const bbtn = document.querySelector("#bbtn")
+    let username = ""
+    bbtn.addEventListener("click", () => {
+        const usename = document.querySelector("#username").value
+        username = usename
+    })
+    const socket = io()
+    const msg = document.querySelector("#msg")
+    const send_btn = document.querySelector("#send_btn")
+    const container = document.querySelector(".container")
+    send_btn.addEventListener("click", () => {
+
+        //{{!-- console.log(msg.value)//getting value  --}}
+        if (msg.value) {
+            socket.emit("message", msg.value, username)//add username after mas.value , username
+            msg.value = ""
+        } else {
+            alert("enter message")
+        }
+    })
+    socket.on("chat message", (data, name) => {
+
+        const div = document.createElement('div');
+        const p = document.createElement('p');
+        const li = document.createElement('li');
+        p.textContent = name
+        li.textContent = data
+        div.append(p)
+        div.append(li)
+        container.appendChild(div)
+    })
+
+    //SUBMIT FORM FUNCTION
+    var submitButton = document.getElementById("submitButton");
+    var form = document.getElementById("myForm");
+
+    // Add click event listener to the image
+    submitButton.addEventListener("click", function () {
+        // Submit the form
+        form.submit();
+    });
+    //ENDS
+
+</script>
+
+</html>

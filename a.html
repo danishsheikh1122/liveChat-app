@@ -1,19 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./src/public/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
 </head>
-<body>
-    
+
+<body onload="data()">
+    <div class="credentialspage" id="credentialspage">
+        <label for="username">enter your username</label>
+        <input type="text" id="username">
+        <input type="button" value="Join Chat" onclick="credentialspage_btn()">
+    </div>
+    <div class="mainpage" id="mainpage">
+        <div class="container" name="msgcontainer" id="msgcontainer">
+            <ul>
+                <li>ok</li>
+                <li> okok Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, quaerat.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur atque tenetur fuga iusto
+                    asperiores repellendus ullam veritatis nemo eveniet laudantium?</li>
+                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, tenetur dolores ut voluptatem
+                    cumque ratione! Illo, consectetur. Eligendi, expedita asperiores quisquam, sapiente rem, dicta vel
+                    nisi reprehenderit amet a veniam ducimus iure aliquam minus nam. Magni nulla earum sit. Sequi harum
+                    soluta quam voluptatibus ipsam enim atque quod, voluptatem aliquid.
+                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, tenetur dolores ut voluptatem
+                    cumque ratione! Illo, consectetur. Eligendi, expedita asperiores quisquam, sapiente rem, dicta vel
+                    nisi reprehenderit amet a veniam ducimus iure aliquam minus nam. Magni nulla earum sit. Sequi harum
+                    soluta quam voluptatibus ipsam enim atque quod, voluptatem aliquid.
+                </li>
+            </ul>
+        </div>
+        <form action="/savedata" method="post">
+            <input type="text" id="msg">
+            <input type="button" value="send" id="send_btn">
+            <input type="submit" value="save" id="save">
+        </form>
+    </div>
 </body>
-<script>
-    const data=async()=>{
-        const response=await fetch("http://localhost:8000/api/savedata")
-        console.log(response)
+<script src="/socket.io/socket.io.js"></script>
+<script src="./src/public/js/index.js"></script>
+<!-- <script>
+
+    //data retriving form data base
+    const data = async () => {
+        try {
+            const response = await fetch("http://localhost:8000/api/savedata")
+            //console.log(response) this will give us status code and all other things but
+            //it is not in object form to convert it use below code
+            const jsonData = await response.json()//imp convert response received froom local host to data
+            if (jsonData.length == 0) {
+                console.log("no data to fetch")
+            } else {
+
+                console.log(jsonData)
+                //putting data to frontend
+                jsonData.forEach((elem) => {
+                    const item = document.createElement('li');
+                    item.textContent = elem.msg
+                    container.appendChild(item)
+                })
+            }
+        } catch (err) {
+            console.log(err)
+
+        }
     }
-    data()
-</script>
+
+    const socket = io()
+    const msg = document.querySelector("#msg")
+    const send_btn = document.querySelector("#send_btn")
+    const container = document.querySelector(".container")
+
+    send_btn.addEventListener("click", () => {
+
+        //{{!-- console.log(msg.value)//getting value  --}}
+        if (msg.value) {
+            socket.emit("message", msg.value)//add username after mas.value , username
+            msg.value = ""
+        } else {
+            alert("enter message")
+        }
+    })
+    socket.on("chat message", (data) => {
+        const item = document.createElement('li');
+        item.textContent = data
+        container.appendChild(item)
+    })
+
+
+</script> -->
+
 </html>
